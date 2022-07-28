@@ -4,12 +4,16 @@ import "./Todo.css";
 const reducer = (todos, action) => {
   if (action.type === "add") {
     //add todo item in list
-    todos = [...todos];
-    let newtodo = {
-      id: todos.length + 1,
-      item: action.value,
-    };
-    todos.push(newtodo);
+    if (action.value != "") {
+      todos = [...todos];
+      let newtodo = {
+        id: todos.length + 1,
+        item: action.value,
+      };
+      todos.push(newtodo);
+    } else {
+      alert("Please Enter a Todo");
+    }
     return todos;
   }
   if (action.type === "delete") {
@@ -48,24 +52,30 @@ const TodoApp = () => {
         </button>
       </div>
       {todos.length !== 0 ? (
-        <div className="display-todos">
-          <h3>Todos list</h3>
-          {todos.map((item, index) => (
-            <div className="separate-todo" key={item.id}>
-              <span className="txt"> {item.item}</span>
-              <div className="buttons">
-                <button onClick={() => dispatch({ type: "edit", item: item })}>
-                  Edit
-                </button>
-                <button
-                  onClick={() => dispatch({ type: "delete", id: item.id })}
-                >
-                  Delete
-                </button>
+        <>
+          <div className="heading">
+            <h3>Todos list</h3>
+          </div>
+          <div className="display-todos">
+            {todos.map((item, index) => (
+              <div className="separate-todo" key={item.id}>
+                <span className="txt"> {item.item}</span>
+                <div className="buttons">
+                  <button
+                    onClick={() => dispatch({ type: "edit", item: item })}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => dispatch({ type: "delete", id: item.id })}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </>
       ) : (
         ""
       )}
