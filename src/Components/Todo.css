@@ -26,8 +26,6 @@ h2{
     right: 0;
     position: fixed;
     text-align: center;
-    display: flex;
-    justify-content: center;
     color: black;
     margin-top: 50px;
 }
@@ -57,7 +55,7 @@ h2{
 button{
     border: 1px solid gray;
     background: transparent;
-    padding: 2.1px;
+    padding: 1.01px;
 }
 
 .txt{
@@ -70,4 +68,25 @@ button{
     transition-delay: 400ms;
     background: transparent;
     background-color: rgb(11, 58, 5);
+}
+
+
+@media screen and (max-width:1193px) {
+    .display-todos{
+        margin-top: 8%;
+    }
+    .heading{
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width:684px) {
+    .display-todos{
+        margin-top: 14%;
+    }
+    .separate-todo {
+        width: 100%;
+        height: auto;
+    }
+   
 }
